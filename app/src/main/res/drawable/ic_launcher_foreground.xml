@@ -1,0 +1,36 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <!-- Traditional Indian Royal Dome Arch & Diya Silhouette centered in safe 66dp zone -->
+    <!-- Base Platform -->
+    <path
+        android:fillColor="#FFD54F"
+        android:pathData="M30,76h48v3h-48z" />
+    <path
+        android:fillColor="#FFF8E1"
+        android:pathData="M33,73h42v3h-42z" />
+    <!-- Pillars -->
+    <path
+        android:fillColor="#FFF8E1"
+        android:pathData="M36,54h4v19h-4z M68,54h4v19h-4z" />
+    <!-- Palace Arch Dome -->
+    <path
+        android:fillColor="#FFF8E1"
+        android:pathData="M54,28 C47,38 34,44 34,54 L42,54 C42,48 48,43 54,36 C60,43 66,48 66,54 L74,54 C74,44 61,38 54,28 Z" />
+    <!-- Golden Kalash Finial on top of dome -->
+    <path
+        android:fillColor="#FFC107"
+        android:pathData="M53,23h2v5h-2z M54,22m-2,0a2,2 0 1,0 4,0a2,2 0 1,0 -4,0" />
+    <!-- Center Glowing Sacred Diya Lamp -->
+    <path
+        android:fillColor="#FFB300"
+        android:pathData="M46,67 C46,71 62,71 62,67 Z" />
+    <path
+        android:fillColor="#FF5722"
+        android:pathData="M54,58 C51,62 52,65 54,67 C56,65 57,62 54,58 Z" />
+    <path
+        android:fillColor="#FFEB3B"
+        android:pathData="M54,61 C52.5,63 53,65 54,66 C55,65 55.5,63 54,61 Z" />
+</vector>
