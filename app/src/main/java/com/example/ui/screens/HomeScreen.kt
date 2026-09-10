@@ -86,6 +86,10 @@ fun HomeScreen(
 ) {
     val states = remember { CulturalRepository.states }
     val featuredPlaces = remember { CulturalRepository.getAllPlaces().take(6) }
+    var homeRegionFilter by remember { mutableStateOf("All") }
+    val homeFilteredStates = remember(homeRegionFilter) {
+        if (homeRegionFilter == "All") states else states.filter { it.region.equals(homeRegionFilter, ignoreCase = true) }
+    }
 
     Column(
         modifier = modifier
@@ -303,11 +307,42 @@ fun HomeScreen(
 
         Spacer(Modifier.height(20.dp))
 
-        // Section: Browse All States
+        // Section: Browse All 32 States & UTs
         SectionTitle(
-            title = "Explore All 10 Featured States",
-            subtitle = "Direct access to state cultural encyclopedias"
+            title = "Explore All 32 States & UTs of India",
+            subtitle = "Living cultural encyclopedias: North, West, East, South & Northeast"
         )
+
+        // Region Filter Chips
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .horizontalScroll(rememberScrollState())
+                .padding(horizontal = 16.dp, vertical = 6.dp),
+            horizontalArrangement = Arrangement.spacedBy(8.dp)
+        ) {
+            listOf("All", "North", "West", "East", "South", "Northeast").forEach { reg ->
+                val isSelected = homeRegionFilter == reg
+                val count = if (reg == "All") states.size else states.count { it.region.equals(reg, ignoreCase = true) }
+                androidx.compose.material3.FilterChip(
+                    selected = isSelected,
+                    onClick = { homeRegionFilter = reg },
+                    label = {
+                        Text(
+                            text = if (reg == "All") "🇮🇳 All ($count)" else "$reg ($count)",
+                            fontWeight = if (isSelected) FontWeight.Bold else FontWeight.Normal,
+                            fontSize = 12.sp
+                        )
+                    },
+                    colors = androidx.compose.material3.FilterChipDefaults.filterChipColors(
+                        selectedContainerColor = SaffronOrange,
+                        selectedLabelColor = Color.White
+                    )
+                )
+            }
+        }
+
+        Spacer(Modifier.height(6.dp))
 
         Column(
             modifier = Modifier
@@ -315,7 +350,7 @@ fun HomeScreen(
                 .padding(horizontal = 16.dp),
             verticalArrangement = Arrangement.spacedBy(10.dp)
         ) {
-            states.forEach { st ->
+            homeFilteredStates.forEach { st ->
                 StateListSummaryRow(state = st, onClick = { onEnterState(st) })
             }
         }
